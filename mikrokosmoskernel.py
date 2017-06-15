@@ -9,7 +9,11 @@ class MikrokosmosKernel(Kernel):
     implementation_version = '0.1'
     language = 'mikrokosmos'
     language_version = '0.2'
-    language_info = {'mimetype': 'text/plain'}
+    language_info = {
+        'name' : 'Mikrokosmos',
+        'mimetype': 'text/plain',
+        'file_extension': '.mkr',
+    }
     banner = "Mikrokosmos - A lambda calculus interpreter"
 
     # Initialization
