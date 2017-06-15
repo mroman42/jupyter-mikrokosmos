@@ -24,11 +24,16 @@ class MikrokosmosKernel(Kernel):
                    store_history=True,    # Whether to record code in history
                    user_expressions=None,
                    allow_stdin=False):
-
-        # Send code to mikrokosmos
-        self.mikro.sendline(code)
-        self.mikro.expect('mikro>')
-        output = self.mikro.before.decode('utf8')
+        
+        # Multiple-line support
+        output = ""
+        for line in code.split('\n'):
+            # Send code to mikrokosmos
+            self.mikro.sendline(line)
+            self.mikro.expect('mikro> ')
+            # Receive code from mikrokosmos
+            partialoutput = self.mikro.before.decode('utf8')
+            output = output + '\n' + partialoutput
         
         if not silent:
             stream_content = {'name': 'stdout', 'text': output}
