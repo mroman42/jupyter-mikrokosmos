@@ -1,5 +1,5 @@
 # IMikrokosmos
-**IMikrokosmos** is a IPython/Jupyter kernel for the [Mikrokosmos](https://github.com/M42/mikrokosmos) lambda interpreter.
+**IMikrokosmos** is a Jupyter/IPython kernel for the [Mikrokosmos](https://github.com/M42/mikrokosmos) lambda interpreter.
 
 ![mikrokosmos2](https://user-images.githubusercontent.com/5337877/27183541-2d41fd92-51df-11e7-9644-0e6199cc63d9.jpeg)
 
