@@ -13,6 +13,7 @@ class MikrokosmosKernel(Kernel):
         'name' : 'Mikrokosmos',
         'mimetype': 'text/plain',
         'file_extension': '.mkr',
+        'codemirror_mode': 'mikrokosmos'
     }
     banner = "Mikrokosmos - A lambda calculus interpreter"
 
