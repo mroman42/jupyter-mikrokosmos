@@ -3,6 +3,7 @@
 
 from ipykernel.kernelbase import Kernel
 import pexpect
+import re
 
 class MikrokosmosKernel(Kernel):
     implementation = 'IMikrokosmos'
@@ -26,6 +27,9 @@ class MikrokosmosKernel(Kernel):
                    user_expressions=None,
                    allow_stdin=False):
 
+        # Lines starting with an space are joined to previous lines
+        code = re.sub('\n(\s+)', ' ', code)
+        
         # Interpreter interaction
         # Multiple-line support
         output = ""
@@ -52,7 +56,7 @@ class MikrokosmosKernel(Kernel):
                 'payload': [],
                 'user_expressions': {},
                }
-
+ 
 if __name__ == '__main__':
     from ipykernel.kernelapp import IPKernelApp
     IPKernelApp.launch_instance(kernel_class=MikrokosmosKernel)
