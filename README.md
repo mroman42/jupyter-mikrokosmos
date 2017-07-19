@@ -18,3 +18,9 @@ The `kernel.json` file must be placed inside a folder named
 the `mikrokosmoskernel.py` file must be available for Python on the
 working directory, or, more generally, on
 the [sys-path](https://docs.python.org/2/library/sys.html#sys.path).
+This can be achieved simply by installing it with **pip**
+
+```
+sudo pip install imikrokosmos
+```
+
