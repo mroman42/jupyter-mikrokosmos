@@ -56,7 +56,3 @@ class MikrokosmosKernel(Kernel):
                 'payload': [],
                 'user_expressions': {},
                }
- 
-if __name__ == '__main__':
-    from ipykernel.kernelapp import IPKernelApp
-    IPKernelApp.launch_instance(kernel_class=MikrokosmosKernel)
