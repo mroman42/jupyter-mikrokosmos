@@ -45,7 +45,7 @@ if __name__ == '__main__':
 # pip setup
 setup( name='imikrokosmos'
      , description='A Jupyter kernel for the mikrokosmos lambda interpreter'
-     , version='0.1.2'
+     , version='0.1.3'
      , url='https://github.com/M42/jupyter-mikrokosmos'
      , author='Mario Román'
      , author_email='mromang08@gmail.com'
