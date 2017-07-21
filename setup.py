@@ -39,7 +39,7 @@ def install_my_kernel_spec(user=False):
 # pip setup
 setup( name='imikrokosmos'
      , description='A Jupyter kernel for the mikrokosmos lambda interpreter'
-     , version='0.1.4'
+     , version='0.1.5'
      , url='https://github.com/M42/jupyter-mikrokosmos'
      , author='Mario Román'
      , author_email='mromang08@gmail.com'
@@ -47,8 +47,8 @@ setup( name='imikrokosmos'
      , packages=['mikrokosmoskernel']
      , package_dir={"mikrokosmoskernel": "mikrokosmoskernel"}
      , package_data={"mikrokosmoskernel":
-                     ["mikrokosmoskernel/kernel.js"
-                     ,"mikrokosmoskernel/kernel.json"]}
+                     ["kernel.js"
+                     ,"kernel.json"]}
      , cmdclass={
         'develop': PostDevelopCommand,
         'install': PostInstallCommand,
