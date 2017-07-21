@@ -46,7 +46,9 @@ setup( name='imikrokosmos'
      , license='GPLv3'
      , packages=['mikrokosmoskernel']
      , package_dir={"mikrokosmoskernel": "mikrokosmoskernel"}
-     , package_data={"mikrokosmoskernel": ["mikrokosmoskernel/kernel.js","mikrokosmoskernel/kernel.json"]}
+     , package_data={"mikrokosmoskernel":
+                     ["mikrokosmoskernel/kernel.js"
+                     ,"mikrokosmoskernel/kernel.json"]}
      , cmdclass={
         'develop': PostDevelopCommand,
         'install': PostInstallCommand,
