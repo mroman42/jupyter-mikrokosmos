@@ -31,26 +31,22 @@ def install_my_kernel_spec(user=False):
     with TemporaryDirectory() as td:
         os.chmod(td, 0o755) # Starts off as 700, not user readable
         path_of_file = dirname( abspath(__file__) )
-        file_copy(path_of_file + "/kernel.js", td)
-        file_copy(path_of_file + "/kernel.json", td)
+        file_copy(path_of_file + "/mikrokosmoskernel/kernel.js", td)
+        file_copy(path_of_file + "/mikrokosmoskernel/kernel.json", td)
         print('Installing Jupyter kernel spec')
         install_kernel_spec(td, 'IMikrokosmos', user=user, replace=True)
-
-def main(argv=None):
-    install_my_kernel_spec()
-
-if __name__ == '__main__':
-    main()
     
 # pip setup
 setup( name='imikrokosmos'
      , description='A Jupyter kernel for the mikrokosmos lambda interpreter'
-     , version='0.1.3'
+     , version='0.1.4'
      , url='https://github.com/M42/jupyter-mikrokosmos'
      , author='Mario Román'
      , author_email='mromang08@gmail.com'
      , license='GPLv3'
      , packages=['mikrokosmoskernel']
+     , package_dir={"mikrokosmoskernel": "mikrokosmoskernel"}
+     , package_data={"mikrokosmoskernel": ["mikrokosmoskernel/kernel.js","mikrokosmoskernel/kernel.json"]}
      , cmdclass={
         'develop': PostDevelopCommand,
         'install': PostInstallCommand,
