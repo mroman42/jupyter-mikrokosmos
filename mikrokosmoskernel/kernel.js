@@ -213,7 +213,7 @@ define(function(){
 		// Comments
 		{regex: /\#.*/, token: "comment"},
 		// Interpreter
-		{regex: /\:load|\:verbose|\:color/, token: "atom"},
+		{regex: /\:load|\:verbose|\:ski|\:restart|\:types|\:color/, token: "atom"},
 		// Binding
 		{regex: /(.*?)(\s*)(=)(\s*)(.*?)$/,
 		 token: ["def",null,"operator",null,"variable"]},
