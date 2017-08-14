@@ -27,6 +27,8 @@ class MikrokosmosKernel(Kernel):
                    user_expressions=None,
                    allow_stdin=False):
 
+        # Empty lines are removed
+        code = re.sub('(\n+)', '\n', code)
         # Lines starting with an space are joined to previous lines
         code = re.sub('\n(\s+)', ' ', code)
         
