@@ -7,9 +7,9 @@ import re
 
 class MikrokosmosKernel(Kernel):
     implementation = 'IMikrokosmos'
-    implementation_version = '0.1'
+    implementation_version = '0.6'
     language = 'mikrokosmos'
-    language_version = '0.2'
+    language_version = '0.6'
     language_info = {
         'name' : 'Mikrokosmos',
         'mimetype': 'text/plain',
@@ -26,11 +26,6 @@ class MikrokosmosKernel(Kernel):
                    store_history=True,
                    user_expressions=None,
                    allow_stdin=False):
-
-        # Empty lines are removed
-        code = re.sub('(\n+)', '\n', code)
-        # Lines starting with an space are joined to previous lines
-        code = re.sub('\n(\s+)', ' ', code)
         
         # Interpreter interaction
         # Multiple-line support
