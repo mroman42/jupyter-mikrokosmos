@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from ipykernel.kernelbase import Kernel
+from pexpect import popen_spawn
 import pexpect
 import re
 
@@ -19,7 +20,7 @@ class MikrokosmosKernel(Kernel):
     banner = "Mikrokosmos - A lambda calculus interpreter"
 
     # Initialization
-    mikro = pexpect.spawn('mikrokosmos')
+    mikro = pexpect.popen_spawn.PopenSpawn('mikrokosmos')
     mikro.expect('mikro>')
     
     def do_execute(self, code, silent,
