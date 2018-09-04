@@ -5,6 +5,7 @@ from ipykernel.kernelbase import Kernel
 from pexpect import popen_spawn
 import pexpect
 import re
+import os
 
 class MikrokosmosKernel(Kernel):
     implementation = 'IMikrokosmos'
@@ -19,8 +20,8 @@ class MikrokosmosKernel(Kernel):
     }
     banner = "Mikrokosmos - A lambda calculus interpreter"
 
-    # Initialization
-    mikro = pexpect.popen_spawn.PopenSpawn('mikrokosmos')
+    # Initialization, Windows needs PopenSpawn.
+    mikro = pexpect.popen_spawn.PopenSpawn('mikrokosmos', encoding='utf-8', timeout=1)
     mikro.expect('mikro>')
     
     def do_execute(self, code, silent,
@@ -37,9 +38,8 @@ class MikrokosmosKernel(Kernel):
             self.mikro.expect('mikro> ')
             # Receive and filter code from mikrokosmos
             partialoutput = self.mikro.before
-            partialoutput = partialoutput.replace(b'\x1b>',b'') # Filtering codes
-            partialoutput = partialoutput.replace(b'\x1b=',b'') # Filtering codes
-            partialoutput = partialoutput.decode('utf8')
+            partialoutput = partialoutput.replace('\x1b>','') # Filtering codes
+            partialoutput = partialoutput.replace('\x1b=','') # Filtering codes
             partialoutput = partialoutput[partialoutput.index('\n')+1:]
 
             output = output + partialoutput
