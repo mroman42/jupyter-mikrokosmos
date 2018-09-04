@@ -8,9 +8,9 @@ import re
 
 class MikrokosmosKernel(Kernel):
     implementation = 'IMikrokosmos'
-    implementation_version = '0.6'
+    implementation_version = '0.8'
     language = 'mikrokosmos'
-    language_version = '0.6'
+    language_version = '0.8'
     language_info = {
         'name' : 'Mikrokosmos',
         'mimetype': 'text/plain',
