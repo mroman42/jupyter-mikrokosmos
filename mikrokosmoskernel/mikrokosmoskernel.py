@@ -52,7 +52,7 @@ class MikrokosmosKernel(Kernel):
             partialoutput = self.mikro.before
             partialoutput = partialoutput.replace(b'\x1b>',b'') # Filtering codes
             partialoutput = partialoutput.replace(b'\x1b=',b'') # Filtering codes
-            partialoutput = partialoutput.decode('utf8')
+            partialoutput = partialoutput.decode('utf8', 'replace')
 
             # Linux creates a spurious newline
             if not is_windows:
