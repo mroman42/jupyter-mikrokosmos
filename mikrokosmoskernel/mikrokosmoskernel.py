@@ -21,7 +21,15 @@ class MikrokosmosKernel(Kernel):
     banner = "Mikrokosmos - A lambda calculus interpreter"
 
     # Initialization, Windows needs PopenSpawn.
-    mikro = pexpect.popen_spawn.PopenSpawn('mikrokosmos', encoding='utf-8', timeout=1)
+    is_windows = (os.name == 'nt')
+
+    if is_windows:
+        mikro = pexpect.popen_spawn.PopenSpawn('mikrokosmos')
+        endofline = '\n'
+    else:
+        mikro = pexpect.spawn('mikrokosmos')
+        endofline = ''
+        
     mikro.expect('mikro>')
     
     def do_execute(self, code, silent,
@@ -34,16 +42,21 @@ class MikrokosmosKernel(Kernel):
         output = ""
         for line in code.split('\n'):
             # Send code to mikrokosmos
-            self.mikro.sendline(line)
+            self.mikro.sendline(line + endofline)
             self.mikro.expect('mikro> ')
             # Receive and filter code from mikrokosmos
             partialoutput = self.mikro.before
             partialoutput = partialoutput.replace('\x1b>','') # Filtering codes
             partialoutput = partialoutput.replace('\x1b=','') # Filtering codes
-            partialoutput = partialoutput[partialoutput.index('\n')+1:]
+            partialoutput = partialoutput.decode('utf8')
+
+            if not is_windows:
+                partialoutput = partialoutput[partialoutput.index('\n')+1:]
 
             output = output + partialoutput
-        
+
+            if is_windows:
+                self.mikro.expect('mikro> ')
         
         if not silent:
             stream_content = {'name': 'stdout', 'text': output}
