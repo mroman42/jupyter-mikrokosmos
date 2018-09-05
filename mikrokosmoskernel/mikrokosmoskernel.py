@@ -50,8 +50,8 @@ class MikrokosmosKernel(Kernel):
             
             # Receive and filter code from mikrokosmos
             partialoutput = self.mikro.before
-            partialoutput = partialoutput.replace(b'\x1b>','') # Filtering codes
-            partialoutput = partialoutput.replace(b'\x1b=','') # Filtering codes
+            partialoutput = partialoutput.replace(b'\x1b>',b'') # Filtering codes
+            partialoutput = partialoutput.replace(b'\x1b=',b'') # Filtering codes
             partialoutput = partialoutput.decode('utf8')
 
             # Linux creates a spurious newline
