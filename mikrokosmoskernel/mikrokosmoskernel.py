@@ -21,14 +21,10 @@ class MikrokosmosKernel(Kernel):
     banner = "Mikrokosmos - A lambda calculus interpreter"
 
     # Initialization, Windows needs PopenSpawn.
-    is_windows = (os.name == 'nt')
-
-    if is_windows:
+    if (os.name == 'nt'):
         mikro = pexpect.popen_spawn.PopenSpawn('mikrokosmos')
-        endofline = '\n'
     else:
         mikro = pexpect.spawn('mikrokosmos')
-        endofline = ''
         
     mikro.expect('mikro>')
     
@@ -36,7 +32,14 @@ class MikrokosmosKernel(Kernel):
                    store_history=True,
                    user_expressions=None,
                    allow_stdin=False):
-        
+
+        # Windows needs a newline
+        is_windows = (os.name == 'nt')
+        if is_windows:
+            endofline = '\n'
+        else:
+            endofline = ''
+            
         # Interpreter interaction
         # Multiple-line support
         output = ""
@@ -44,17 +47,20 @@ class MikrokosmosKernel(Kernel):
             # Send code to mikrokosmos
             self.mikro.sendline(line + endofline)
             self.mikro.expect('mikro> ')
+            
             # Receive and filter code from mikrokosmos
             partialoutput = self.mikro.before
-            partialoutput = partialoutput.replace('\x1b>','') # Filtering codes
-            partialoutput = partialoutput.replace('\x1b=','') # Filtering codes
+            partialoutput = partialoutput.replace(b'\x1b>','') # Filtering codes
+            partialoutput = partialoutput.replace(b'\x1b=','') # Filtering codes
             partialoutput = partialoutput.decode('utf8')
 
+            # Linux creates a spurious newline
             if not is_windows:
                 partialoutput = partialoutput[partialoutput.index('\n')+1:]
 
             output = output + partialoutput
 
+            # Windows needs to expect because of the previous newline
             if is_windows:
                 self.mikro.expect('mikro> ')
         
