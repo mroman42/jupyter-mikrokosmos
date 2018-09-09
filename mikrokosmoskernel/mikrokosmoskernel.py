@@ -18,7 +18,7 @@ class MikrokosmosKernel(Kernel):
         'file_extension': '.mkr',
         'codemirror_mode': 'mikrokosmos'
     }
-    banner = "Mikrokosmos - A lambda calculus interpreter"
+    banner = "Mikrokosmos - A lambda calculus interpreter (kernel v0.1.8)"
 
     # Initialization, Windows needs PopenSpawn.
     if (os.name == 'nt'):
