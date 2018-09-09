@@ -39,7 +39,7 @@ def install_my_kernel_spec(user=False):
 # pip setup
 setup( name='imikrokosmos'
      , description='A Jupyter kernel for the mikrokosmos lambda interpreter'
-     , version='0.1.6'
+     , version='0.1.8'
      , url='https://github.com/mroman42/jupyter-mikrokosmos'
      , author='Mario Román'
      , author_email='mromang08@gmail.com'
