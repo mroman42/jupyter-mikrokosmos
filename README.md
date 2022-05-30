@@ -5,7 +5,9 @@ interpreter.
 
 **Important**: Please note that this Jupyter kernel only works on
 Windows on its `windows-support` branch. Certain features, such
-as unicode output, cause problems in this case.
+as unicode output, cause problems in this case. Windows users may
+also use the Windows Subsystem for Linux (WSL). Note that only
+WSL1 has been tested.
 
 ![mikrokosmos2](https://user-images.githubusercontent.com/5337877/28381708-11a1608a-6cbc-11e7-80da-2292d4716cdb.png)
 
