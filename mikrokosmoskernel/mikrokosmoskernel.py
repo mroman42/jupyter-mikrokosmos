@@ -6,6 +6,10 @@ from pexpect import popen_spawn
 import pexpect
 import re
 import os
+from platform import uname
+
+_IS_WSL = 'Microsoft' in uname().release
+
 
 class MikrokosmosKernel(Kernel):
     implementation = 'IMikrokosmos'
@@ -20,8 +24,8 @@ class MikrokosmosKernel(Kernel):
     }
     banner = "Mikrokosmos - A lambda calculus interpreter (kernel v0.1.8)"
 
-    # Initialization, Windows needs PopenSpawn.
-    if (os.name == 'nt'):
+    # Initialization, Windows (and Windows Subsystem for Linux) needs PopenSpawn
+    if os.name == 'nt' or _IS_WSL:
         mikro = pexpect.popen_spawn.PopenSpawn('mikrokosmos')
     else:
         mikro = pexpect.spawn('mikrokosmos')
@@ -34,7 +38,7 @@ class MikrokosmosKernel(Kernel):
                    allow_stdin=False):
 
         # Windows needs a newline
-        is_windows = (os.name == 'nt')
+        is_windows = os.name == 'nt' or _IS_WSL
         if is_windows:
             endofline = '\n'
         else:
